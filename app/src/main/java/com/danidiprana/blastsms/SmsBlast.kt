@@ -18,7 +18,7 @@ class SmsBlast: Application(), HasActivityInjector {
     super.onCreate()
 
     DaggerAppComponent.builder().application(this)
-        .setApplicationContext(AppModule())
+        .setApplicationContext(AppModule(this))
         .build()
         .inject(this)
   }

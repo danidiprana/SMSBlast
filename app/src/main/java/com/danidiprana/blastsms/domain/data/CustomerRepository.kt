@@ -3,6 +3,7 @@ package com.danidiprana.blastsms.domain.data
 import com.danidiprana.blastsms.domain.data.CustomerGatewayImpl.Companion.KEY_GENDER
 import com.danidiprana.blastsms.domain.data.CustomerGatewayImpl.Companion.KEY_NAME
 import com.danidiprana.blastsms.domain.data.CustomerGatewayImpl.Companion.KEY_PHONE
+import com.danidiprana.blastsms.domain.entity.CustomerDao
 import com.danidiprana.blastsms.domain.entity.CustomerEntity
 import io.reactivex.Single
 
@@ -11,7 +12,8 @@ interface CustomerRepository {
 }
 
 class CustomerRepositoryImpl(
-    private val customerGateway: CustomerGateway
+    private val customerGateway: CustomerGateway,
+    private val customerDao: CustomerDao
 ) : CustomerRepository {
 
   override fun getAllCustomer(): Single<ArrayList<CustomerEntity>> {
@@ -28,6 +30,7 @@ class CustomerRepositoryImpl(
             val phone = jsonObject.getString(KEY_PHONE)
             val customerEntity = CustomerEntity(name, gender, phone)
 
+            customerDao.insertCustomer(customerEntity)
             listCustomerEntity.add(customerEntity)
           }
 
