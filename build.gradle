@@ -23,7 +23,7 @@ allprojects {
 }
 
 ext {
-  dagger = '2.13'
+  dagger = '2.19'
 }
 
 task clean(type: Delete) {

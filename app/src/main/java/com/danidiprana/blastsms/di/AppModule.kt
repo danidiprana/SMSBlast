@@ -1,6 +1,7 @@
 package com.danidiprana.blastsms.di
 
 import android.arch.persistence.room.Room
+import android.arch.persistence.room.RoomDatabase.JournalMode.TRUNCATE
 import android.content.Context
 import com.danidiprana.blastsms.domain.data.AppDatabase
 import com.danidiprana.blastsms.domain.data.CustomerGateway
@@ -25,7 +26,8 @@ class AppModule(private val context: Context) {
 
   @Provides
   fun provideDatabase(context: Context): AppDatabase {
-    return Room.databaseBuilder(context, AppDatabase::class.java, "sms-blast-db").build()
+    return Room.databaseBuilder(context, AppDatabase::class.java, "sms-blast-db")
+        .setJournalMode(TRUNCATE).addMigrations(AppDatabase.MIGRATION_1_2).build()
   }
 
   @Provides

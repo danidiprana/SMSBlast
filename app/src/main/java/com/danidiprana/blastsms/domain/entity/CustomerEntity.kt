@@ -6,8 +6,8 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "customer")
 data class CustomerEntity(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "name") val name: String = "",
-    @ColumnInfo(name = "gender") val gender: String = "",
-    @ColumnInfo(name = "phone") val phone: String = ""
+  @PrimaryKey(autoGenerate = true) var id: Long = 0L,
+  @ColumnInfo(name = "name") var name: String = "",
+  @ColumnInfo(name = "gender") var gender: String = "",
+  @ColumnInfo(name = "phone") var phone: String = ""
 )
