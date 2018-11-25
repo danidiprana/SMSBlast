@@ -28,7 +28,7 @@ class CustomerRepositoryImpl(
             val name = jsonObject.getString(KEY_NAME)
             val gender = jsonObject.getString(KEY_GENDER)
             val phone = jsonObject.getString(KEY_PHONE)
-            val customerEntity = CustomerEntity(name, gender, phone)
+            val customerEntity = CustomerEntity((i+1).toLong(), name, gender, phone)
 
             customerDao.insertCustomer(customerEntity)
             listCustomerEntity.add(customerEntity)

@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.danidiprana.blastsms.R
 import com.danidiprana.blastsms.R.layout
-import com.danidiprana.blastsms.domain.entity.CustomerEntity
 import com.danidiprana.blastsms.presentation.customer.CustomerContract.Presenter
 import com.danidiprana.blastsms.presentation.customer.CustomerContract.View
 import dagger.android.AndroidInjection
@@ -34,13 +34,14 @@ class ListCustomerActivity : AppCompatActivity(), View {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when(item.itemId){
       R.id.sync_customer -> {
-        presenter.getAllListCustomer()
+        presenter.syncCustomerData()
         true
       }
       else -> super.onOptionsItemSelected(item)
     }
   }
 
-  override fun showListCustomer(listCustomer: ArrayList<CustomerEntity>) {
+  override fun showToastMessage(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
   }
 }

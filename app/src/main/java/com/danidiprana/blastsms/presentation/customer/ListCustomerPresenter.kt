@@ -19,14 +19,14 @@ class ListCustomerPresenter(
     this.view = view
   }
 
-  override fun getAllListCustomer() {
+  override fun syncCustomerData() {
     getAllCustomerUseCase.execute()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({
-          view.showListCustomer(it)
+          view.showToastMessage("Synchronize to Google Sheet Success ")
         }, {
-          Log.e("ketai", "Error when get all list customer .. $it")
+          view.showToastMessage("Synchronize to Google Sheet Failed ")
         })
         .let { disposable.add(it) }
   }

@@ -3,9 +3,14 @@ package com.danidiprana.blastsms.di
 import com.danidiprana.blastsms.SmsBlast
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
-@Component(modules = [AndroidComponentBindingModule::class, AppModule::class])
+@Component(modules = [
+  AndroidComponentBindingModule::class,
+  AndroidSupportInjectionModule::class,
+  AppModule::class]
+)
 @Singleton
 interface AppComponent {
 
