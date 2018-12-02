@@ -1,14 +1,13 @@
-package com.danidiprana.blastsms.presentation.customer
+package com.danidiprana.blastsms.presentation.main
 
-import android.util.Log
 import com.danidiprana.blastsms.domain.usecase.GetAllCustomerUseCase
-import com.danidiprana.blastsms.presentation.customer.CustomerContract.Presenter
-import com.danidiprana.blastsms.presentation.customer.CustomerContract.View
+import com.danidiprana.blastsms.presentation.main.MainContract.Presenter
+import com.danidiprana.blastsms.presentation.main.MainContract.View
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class ListCustomerPresenter(
+class MainPresenter(
     private val getAllCustomerUseCase: GetAllCustomerUseCase
 ): Presenter {
 

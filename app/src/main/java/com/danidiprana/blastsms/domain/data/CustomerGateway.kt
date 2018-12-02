@@ -1,5 +1,6 @@
 package com.danidiprana.blastsms.domain.data
 
+import com.danidiprana.blastsms.domain.entity.CustomerEntity
 import com.squareup.okhttp.OkHttpClient
 import com.squareup.okhttp.Request
 import io.reactivex.Observable

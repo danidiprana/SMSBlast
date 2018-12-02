@@ -1,6 +1,8 @@
 package com.danidiprana.blastsms.di
 
-import com.danidiprana.blastsms.presentation.customer.ListCustomerActivity
+import com.danidiprana.blastsms.presentation.listCustomer.ListCustomerActivity
+import com.danidiprana.blastsms.presentation.main.MainActivity
+import com.danidiprana.blastsms.presentation.main.MainActivity_MembersInjector
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -8,5 +10,8 @@ import dagger.android.ContributesAndroidInjector
 abstract class AndroidComponentBindingModule {
 
   @ContributesAndroidInjector
-  internal abstract fun bindListCustomerActivity(): ListCustomerActivity
+  abstract fun bindMainActivity(): MainActivity
+
+  @ContributesAndroidInjector
+  abstract fun bindListCustomerActivity(): ListCustomerActivity
 }

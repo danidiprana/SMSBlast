@@ -5,16 +5,22 @@ import com.danidiprana.blastsms.domain.data.CustomerGatewayImpl.Companion.KEY_NA
 import com.danidiprana.blastsms.domain.data.CustomerGatewayImpl.Companion.KEY_PHONE
 import com.danidiprana.blastsms.domain.entity.CustomerDao
 import com.danidiprana.blastsms.domain.entity.CustomerEntity
+import io.reactivex.Observable
 import io.reactivex.Single
 
 interface CustomerRepository {
   fun getAllCustomer(): Single<ArrayList<CustomerEntity>>
+  fun getAllCustomerFromDB(): Single<List<CustomerEntity>>
 }
 
 class CustomerRepositoryImpl(
     private val customerGateway: CustomerGateway,
     private val customerDao: CustomerDao
 ) : CustomerRepository {
+
+  override fun getAllCustomerFromDB(): Single<List<CustomerEntity>> {
+    return customerDao.getAllCustomer()
+  }
 
   override fun getAllCustomer(): Single<ArrayList<CustomerEntity>> {
     return customerGateway.getAllCustomerFromSpreadSheet()

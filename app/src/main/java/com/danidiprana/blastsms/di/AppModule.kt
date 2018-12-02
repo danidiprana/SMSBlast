@@ -9,10 +9,14 @@ import com.danidiprana.blastsms.domain.data.CustomerGatewayImpl
 import com.danidiprana.blastsms.domain.data.CustomerRepository
 import com.danidiprana.blastsms.domain.data.CustomerRepositoryImpl
 import com.danidiprana.blastsms.domain.entity.CustomerDao
+import com.danidiprana.blastsms.domain.usecase.GetAllCustomerFromDBUseCase
+import com.danidiprana.blastsms.domain.usecase.GetAllCustomerFromDBUseCaseImpl
 import com.danidiprana.blastsms.domain.usecase.GetAllCustomerUseCase
 import com.danidiprana.blastsms.domain.usecase.GetAllCustomerUseCaseImpl
-import com.danidiprana.blastsms.presentation.customer.CustomerContract.Presenter
-import com.danidiprana.blastsms.presentation.customer.ListCustomerPresenter
+import com.danidiprana.blastsms.presentation.listCustomer.ListCustomerContract
+import com.danidiprana.blastsms.presentation.listCustomer.ListCustomerPresenter
+import com.danidiprana.blastsms.presentation.main.MainContract.Presenter
+import com.danidiprana.blastsms.presentation.main.MainPresenter
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -48,7 +52,17 @@ class AppModule(private val context: Context) {
   }
 
   @Provides
-  fun provideListCustomerPresenter(getAllCustomerUseCase: GetAllCustomerUseCase): Presenter {
-    return ListCustomerPresenter(getAllCustomerUseCase)
+  fun provideGetAllCustomerFromDBUseCase(repository: CustomerRepository): GetAllCustomerFromDBUseCase {
+    return GetAllCustomerFromDBUseCaseImpl(repository)
+  }
+
+  @Provides
+  fun provideListCustomerPresenter(getAllCustomerFromDBUseCase: GetAllCustomerFromDBUseCase): ListCustomerContract.Presenter {
+    return ListCustomerPresenter(getAllCustomerFromDBUseCase)
+  }
+
+  @Provides
+  fun provideMainPresenter(getAllCustomerUseCase: GetAllCustomerUseCase): Presenter {
+    return MainPresenter(getAllCustomerUseCase)
   }
 }
